@@ -5,3 +5,8 @@ node_modules
 # Environment variables
 
 .env
+
+# Personal
+
+notes.md
+todo.md

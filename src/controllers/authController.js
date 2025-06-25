@@ -1,4 +1,4 @@
-import User from '../models/User';
+import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
 // Generate JWT Token
@@ -8,7 +8,7 @@ const generateToken = (userId) => {
   });
 };
 
-const signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     const {
       firstName,
@@ -83,7 +83,7 @@ const signup = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -127,10 +127,3 @@ const login = async (req, res) => {
     });
   }
 };
-
-// module.exports = {
-//   signup,
-//   login,
-// };
-
-export default { signup, login };

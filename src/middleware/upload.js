@@ -1,10 +1,17 @@
 import multer, { diskStorage } from 'multer';
-import { extname as _extname } from 'path';
+import { join, extname as _extname } from 'path';
+import { existsSync, mkdirSync } from 'fs';
+
+// Ensure upload directory exists
+const uploadDir = join(__dirname, '../../uploads/avatars');
+if (!existsSync(uploadDir)) {
+  mkdirSync(uploadDir, { recursive: true });
+}
 
 // Configure storage
 const storage = diskStorage({
   destination: function (_req, _file, cb) {
-    cb(null, 'uploads/avatars/');
+    cb(null, uploadDir);
   },
   filename: function (_req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -25,6 +32,7 @@ const fileFilter = (_req, file, cb) => {
   }
 };
 
+// Create multer instance
 const upload = multer({
   storage: storage,
   limits: {
@@ -33,4 +41,19 @@ const upload = multer({
   fileFilter: fileFilter,
 });
 
-export default upload;
+// Export upload functions
+export function single(fieldName) {
+  return upload.single(fieldName);
+}
+export function array(fieldName, maxCount) {
+  return upload.array(fieldName, maxCount);
+}
+export function fields(fields) {
+  return upload.fields(fields);
+}
+export function none() {
+  return upload.none();
+}
+export function any() {
+  return upload.any();
+}

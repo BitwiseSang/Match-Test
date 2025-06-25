@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import Device from '../models/Device.js';
 import jwt from 'jsonwebtoken';
 
 // Generate JWT Token

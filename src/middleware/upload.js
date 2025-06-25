@@ -1,6 +1,13 @@
+import { fileURLToPath } from 'url'; // For converting file URL to path
 import multer, { diskStorage } from 'multer';
-import { join, extname as _extname } from 'path';
+import { join, dirname, extname as _extname } from 'path';
 import { existsSync, mkdirSync } from 'fs';
+
+// Get the current file's path using import.meta.url
+const __filename = fileURLToPath(import.meta.url);
+
+// Get the current directory's path
+const __dirname = dirname(__filename);
 
 // Ensure upload directory exists
 const uploadDir = join(__dirname, '../../uploads/avatars');

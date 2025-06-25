@@ -1,2 +1,3 @@
-# Match-Test
-A platform to match testers to clients
+# Match-Test-Server
+
+Match Test is a platform to match testers to clients.

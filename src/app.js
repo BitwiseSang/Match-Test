@@ -2,6 +2,7 @@ import express, { json, urlencoded } from 'express';
 import cors from 'cors';
 import connectDB from './config/database.js';
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
